@@ -1,12 +1,13 @@
 <script>
-  import { getContext } from "svelte";
+  import { createEventDispatcher, getContext } from "svelte";
 
   //   export let expense;
   //   let { name, amount, id } = expense;
   export let id;
   export let name = "";
   export let amount = 0;
-  const removeExpense = getContext("remove");
+  // const removeExpense = getContext("remove");
+  const dispatch = createEventDispatcher();
 
   let displayAmount = false;
   function toggleA() {
@@ -30,7 +31,13 @@
     <button class="expense-btn edit-btn">
       <i class="fas fa-pen" />
     </button>
-    <button class="expense-btn delete-btn" on:click={removeExpense(id)}>
+    <!-- <button class="expense-btn delete-btn" on:click={removeExpense(id)}>
+      <i class="fas fa-trash" />
+    </button> -->
+    <button
+      class="expense-btn delete-btn"
+      on:click={dispatch("delete", { id, name })}
+    >
       <i class="fas fa-trash" />
     </button>
   </div>
