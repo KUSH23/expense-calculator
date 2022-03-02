@@ -1,21 +1,30 @@
 <script>
   // export let name;
-  import Navbar from "./components/navbar.svelte";
-  import expenseData from "./data/expenses";
-  import Title from "./components/title.svelte";
 
+  //components
+  import { setContext } from "svelte";
+  import Navbar from "./components/navbar.svelte";
+  import ExpensesList from "./components/expensesList.svelte";
+
+  //data
+  import expenseData from "./data/expenses";
+
+  //variables
   // let fruits = ["apple", "orange", "lemon"];
   let expenses = [...expenseData];
-  console.log(expenses);
+
+  //functions
+  function removeExpense(id) {
+    expenses = expenses.filter((item) => item.id != id);
+  }
+
+  setContext("remove", removeExpense);
 </script>
 
 <Navbar />
 
-<ul>
-  {#each expenses as item}
-    <Title title={item.name} />
-  {/each}
-</ul>
+<main class="content">
+  <ExpensesList {expenses} />
+</main>
 
-<style>
-</style>
+<style></style>
