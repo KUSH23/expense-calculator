@@ -1,5 +1,7 @@
 <script>
   // export let name;
+  // import Github from "./github.svelte";
+  import GithubAwait from "./githubAwait.svelte";
   import { setContext } from "svelte";
   import { onMount, onDestroy, beforeUpdate, afterUpdate } from "svelte";
   //components
@@ -98,6 +100,7 @@
 <Navbar {showForm} />
 
 <main class="content">
+  <!-- <GithubAwait /> -->
   {#if isFormOpen}
     <Modal>
       <ExpenseForm
